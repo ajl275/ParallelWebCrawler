@@ -49,7 +49,6 @@ final class ParallelWebCrawler implements WebCrawler {
 
   @Override
   public CrawlResult crawl(List<String> startingUrls) {
-    System.out.println(maxDepth);
     Instant deadline = clock.instant().plus(timeout);
     Map<String, Integer> counts = new HashMap<>();
     Map<String, Integer> blockingCounts = Collections.synchronizedMap(counts);

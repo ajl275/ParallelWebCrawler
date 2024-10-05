@@ -1,12 +1,13 @@
 {
-  "startPages": ["https://openlibrary.org/"],
+  "startPages": ["https://en.wikipedia.org/wiki/Sif_(Dark_Souls)"],
   "ignoredUrls": [
     "https://openlibrary.org/about.*",
-    "https://openlibrary.org/people.*"
+    "https://openlibrary.org/people.*",
+    "https://de.wikipedia.org/*"
   ],
   "ignoredWords": ["^.{1,3}$"],
   "parallelism": 4,
-  "maxDepth": 2,
+  "maxDepth": 3,
   "timeoutSeconds": 5,
   "popularWordCount": 5,
   "profileOutputPath": "profileData.txt"

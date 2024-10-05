@@ -1,9 +1,14 @@
 package com.udacity.webcrawler.profiler;
 
+import com.udacity.webcrawler.WebCrawler;
+import com.udacity.webcrawler.parser.PageParser;
+
 import javax.inject.Inject;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
@@ -38,7 +43,21 @@ final class ProfilerImpl implements Profiler {
     //       ProfilingMethodInterceptor and return a dynamic proxy from this method.
     //       See https://docs.oracle.com/javase/10/docs/api/java/lang/reflect/Proxy.html.
 
-    return delegate;
+    if(!hasAnnotation(klass)) {
+      throw new IllegalArgumentException(klass.getName() + " does not contain any profiled methods");
+    }
+
+
+    return (T) Proxy.newProxyInstance(ProfilerImpl.class.getClassLoader(),new Class[]{klass}, new ProfilingMethodInterceptor(clock,state,delegate));
+  }
+
+  private boolean hasAnnotation(Class<?> klass) {
+    for(Method m : klass.getDeclaredMethods()) {
+      if(m.isAnnotationPresent(Profiled.class)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   @Override
