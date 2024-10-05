@@ -9,6 +9,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+/**
+ * A factory for creating CrawlTasks to traverse a given url which all have the
+ * same global configuration options loaded from the crawler config
+ *
+ * @author Amy Lanclos
+ */
 public class CrawlTaskFactory {
 
     private final Clock clock;

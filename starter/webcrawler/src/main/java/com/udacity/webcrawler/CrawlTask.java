@@ -16,6 +16,13 @@ import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.RecursiveTask;
 import java.util.regex.Pattern;
 
+/**
+ * A class extending RecursiveAction which represents a web crawling action which can
+ * be run on a thread in a ForkJoinPool, recursively creates more actions to traverse
+ * links that are encountered stopping after the maxDepth or timeout has been reached
+ *
+ * @author Amy Lanclos
+ */
 public class CrawlTask extends RecursiveAction {
     private final Clock clock;
     private final Instant deadline;
@@ -64,10 +71,8 @@ public class CrawlTask extends RecursiveAction {
         ;
         PageParser.Result result = parserFactory.get(url).parse();
         for (Map.Entry<String, Integer> e : result.getWordCounts().entrySet()) {
-            if (counts.containsKey(e.getKey())) {
+            if (counts.putIfAbsent(e.getKey(), e.getValue()) != null) {
                 counts.put(e.getKey(), e.getValue() + counts.get(e.getKey()));
-            } else {
-                counts.put(e.getKey(), e.getValue());
             }
         }
 

@@ -41,13 +41,20 @@ public final class WebCrawlerMain {
     if(config.getResultPath() != null && !config.getResultPath().isEmpty()) {
       resultWriter.write(Paths.get(config.getResultPath()));
     } else {
+      OutputStreamWriter os = new OutputStreamWriter(System.out);
       resultWriter.write(new OutputStreamWriter(System.out));
+      //os.flush();
+      //os.close();
     }
 
     if(config.getProfileOutputPath() != null && !config.getProfileOutputPath().isEmpty()) {
       profiler.writeData(Paths.get(config.getProfileOutputPath()));
     } else {
-      profiler.writeData(new OutputStreamWriter(System.out));
+      OutputStreamWriter os = new OutputStreamWriter(System.out);
+      os.write(System.lineSeparator());
+      profiler.writeData(os);
+      os.flush();
+      os.close();
     }
   }
 
