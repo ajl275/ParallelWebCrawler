@@ -1,5 +1,5 @@
 {
-  "startPages": ["https://en.wikipedia.org/wiki/Sif_(Dark_Souls)"],
+  "startPages": ["https://openlibrary.org/"],
   "ignoredUrls": [
     "https://openlibrary.org/about.*",
     "https://openlibrary.org/people.*",
