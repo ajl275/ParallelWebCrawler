@@ -3,7 +3,6 @@ package com.udacity.webcrawler;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 /**
@@ -15,7 +14,7 @@ final class WordCounts {
   /**
    * Given an unsorted map of word counts, returns a new map whose word counts are sorted according
    * to the provided {@link WordCountComparator}, and includes only the top
-   * {@param popluarWordCount} words and counts.
+   * {@param popularWordCount} words and counts.
    *
    *
    * @param wordCounts       the unsorted map of word counts.

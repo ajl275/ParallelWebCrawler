@@ -1,19 +1,14 @@
 package com.udacity.webcrawler;
 
-import com.udacity.webcrawler.json.CrawlResult;
 import com.udacity.webcrawler.parser.PageParser;
 import com.udacity.webcrawler.parser.PageParserFactory;
 
 import java.time.Clock;
-import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
-import java.util.concurrent.RecursiveTask;
 import java.util.regex.Pattern;
 
 /**
@@ -68,7 +63,7 @@ public class CrawlTask extends RecursiveAction {
         if (!visitedUrls.add(url)) {
             return;
         }
-        ;
+
         PageParser.Result result = parserFactory.get(url).parse();
         for (Map.Entry<String, Integer> e : result.getWordCounts().entrySet()) {
             if (counts.putIfAbsent(e.getKey(), e.getValue()) != null) {

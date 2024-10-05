@@ -4,15 +4,12 @@ import com.udacity.webcrawler.json.CrawlResult;
 import com.udacity.webcrawler.parser.PageParserFactory;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ForkJoinPool;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * A concrete implementation of {@link WebCrawler} that runs multiple threads on a
